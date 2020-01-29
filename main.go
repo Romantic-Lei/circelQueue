@@ -21,7 +21,7 @@ func (this *CircleQueue) push(val int) (err error) {
 	}
 	// this.tail 在队列的尾部，但是不包含最后的元素
 	this.array[this.tail] = val // 把值放到后面
-	this.tail++ // 当前指向的位置没有值
+	this.tail = (this.tail + 1) % this.maxSize // 当前指向的位置没有值
 	return 
 }
 
@@ -32,7 +32,7 @@ func (this *CircleQueue) Pop() (val int, err error) {
 	}
 	// 取数据, head是指向队首的，并且含有队首元素
 	val = this.array[this.head]
-	this.head++
+	this.head = (this.head + 1) % this.maxSize
 	return val, nil
 }
 
